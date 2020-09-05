@@ -79,14 +79,14 @@
 
 			//Observar en la console de localhost:40xx el mensaje 
 			function getMensajes(){
-				$.get('https://desolate-journey-99341.herokuapp.com/mensajes',(data)=>{
+				$.get('https://chat-09-2020.herokuapp.com/mensajes',(data)=>{
 					data.forEach(addMensaje);
 				})
 
 			}
 
 			function postMensaje(mensaje){
-				$.post('https://desolate-journey-99341.herokuapp.com/mensajes',mensaje)
+				$.post('https://chat-09-2020.herokuapp.com/mensajes',mensaje)
 			}
 		</script>
 	</body>
