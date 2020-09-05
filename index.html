@@ -79,14 +79,14 @@
 
 			//Observar en la console de localhost:40xx el mensaje 
 			function getMensajes(){
-				$.get('http://localhost:3000/mensajes',(data)=>{
+				$.get('https://desolate-journey-99341.herokuapp.com/mensajes',(data)=>{
 					data.forEach(addMensaje);
 				})
 
 			}
 
 			function postMensaje(mensaje){
-				$.post('http://localhost:3000/mensajes',mensaje)
+				$.post('https://desolate-journey-99341.herokuapp.com/mensajes',mensaje)
 			}
 		</script>
 	</body>
