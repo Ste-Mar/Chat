@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Proyecto</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+
+		<!--Eliminar slim e integrity para que funcione-->
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.min.js"
+			crossorigin="anonymous"
+		></script>
+		<!--<script>
+			src="http://yourwebsite.com:12345/socket.io/socket.io.js"
+		</script>-->
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
+
+		
+		<script src="/socket.io/socket.io.js"></script> <!--Con esto funciona var socket -->
+
+
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="jumbotron form-group">
+				<h1 class="display-4">Enviar Mensaje</h1>
+				<input id = "nombre" class="form-control mb-3" placeholder="Nombre" />
+				
+				<textarea id = "mensaje" class="form-control mb-5" style="resize: none; height:150px" placeholder="Escriba su mensaje"></textarea>
+				
+				<button
+					id="enviar"
+					class="btn btn-primary form-control "
+				>
+					Enviar
+				</button>
+			</div>
+			<div id="mensajes"></div>
+		</div>
+
+		<script>
+	//Se requiere recargar la pagina para ver el mensaje
+			
+			var socket = io()
+			
+			$(() => {
+				$("#enviar").click(() => {
+					var mensaje = {nombre: $("#nombre").val(), mensaje: $("#mensaje").val()}
+					postMensaje(mensaje)
+					//addMensajes({nombre: $("#nombre").val(), mensaje: $("#mensaje").val()})
+				});
+				getMensajes()
+			});
+
+			socket.on('mensaje',addMensaje)
+
+			function addMensaje(mensaje) {
+				$("#mensajes").append(`<h4> ${mensaje.nombre} </h4> <p> ${mensaje.mensaje}</p>`);
+			}
+
+			//Observar en la console de localhost:40xx el mensaje 
+			function getMensajes(){
+				$.get('http://localhost:3000/mensajes',(data)=>{
+					data.forEach(addMensaje);
+				})
+
+			}
+
+			function postMensaje(mensaje){
+				$.post('http://localhost:3000/mensajes',mensaje)
+			}
+		</script>
+	</body>
+</html>
+;
