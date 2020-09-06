@@ -33,7 +33,7 @@
 		></script>
 
 		
-		<script src="/socket.io/socket.io.js"></script> <!--Con esto funciona var socket -->
+		<script src="/socket.io/socket.io.js"></script> <!--Con esto funciona "var socket" -->
 
 
 	</head>
@@ -74,15 +74,17 @@
 			}
 
 
+			// En las líneas punteadas colocar el link brindado por Heroku
+
 			function getMensajes(){
-				$.get('https://chat-09-2020.herokuapp.com/mensajes',(data)=>{
+				$.get('....../mensajes',(data)=>{ 
 					data.forEach(addMensaje);
 				})
 
 			}
 
 			function postMensaje(mensaje){
-				$.post('https://chat-09-2020.herokuapp.com/mensajes',mensaje)
+				$.post('..../mensajes',mensaje)
 			}
 		</script>
 	</body>
