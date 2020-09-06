@@ -1,4 +1,4 @@
-Se resaltan los siguientes puntos:
+# Se resaltan los siguientes puntos:
  
 Se instaló:
 
