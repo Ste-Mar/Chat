@@ -21,7 +21,7 @@ var Mensaje = mongoose.model('Mensaje',{
 
 app.get('/mensajes', (req, res) => {
     Mensaje.find({}, (err, mensajes) =>{
-    res.send(mensajes); //localhost:xxxx/mensajes 
+    res.send(mensajes); 
     })
 });
 
